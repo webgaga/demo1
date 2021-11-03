@@ -1,5 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { withRouter, NavLink, Switch, Redirect, Route } from 'react-router-dom';
+const Home = lazy(() => import('./Views/Home'));
+// import Home from './Views/Home'
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +13,11 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <h3>react全家桶</h3>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path='/' component={Home} />
+          </Switch>
+        </Suspense>
       </React.Fragment>
     )
   }
